@@ -60,6 +60,8 @@ jobs:
 
       - name: Deploy to DigitalOcean
         run: |
+          pwd
+          ls
           cd test/deploy_django
           git pull origin main
           source venv/bin/activate
