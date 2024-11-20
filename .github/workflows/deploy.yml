@@ -60,8 +60,6 @@ jobs:
 
       - name: Deploy to DigitalOcean
         run: |
-          # Run the deployment commands on the Droplet
-          ssh -o StrictHostKeyChecking=no root@159.223.113.204 << 'EOF'
             cd /test/test_deploy_django
             git pull origin main
             source venv/bin/activate
