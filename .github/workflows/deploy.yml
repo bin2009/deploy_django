@@ -60,11 +60,10 @@ jobs:
 
       - name: Deploy to DigitalOcean
         run: |
-            cd /test/test_deploy_django
-            git pull origin main
-            source venv/bin/activate
-            pip install -r my_tennis_club/requirements.txt
-            python manage.py migrate
-            sudo systemctl restart gunicorn  # Restart Gunicorn service
-            sudo systemctl restart nginx  # Restart Nginx service
-          EOF
+          cd /test/test_deploy_django
+          git pull origin main
+          source venv/bin/activate
+          pip install -r my_tennis_club/requirements.txt
+          python manage.py migrate
+          sudo systemctl restart gunicorn  # Restart Gunicorn service
+          sudo systemctl restart nginx  # Restart Nginx service
