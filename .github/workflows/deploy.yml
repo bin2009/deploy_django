@@ -103,7 +103,7 @@ jobs:
         script: |
           cd /root/deploy_django
           git pull origin main
-          source /root/deploy_django/venv/bin/activate  # Nếu sử dụng virtualenv
+          source venv/bin/activate  # Nếu sử dụng virtualenv
           pip install -r requirements.txt
           python manage.py migrate
           python manage.py collectstatic --noinput
