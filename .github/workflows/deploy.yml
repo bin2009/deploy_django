@@ -1,9 +1,10 @@
+
 name: CI/CD Pipeline
 
 on:
   push:
     branches:
-      - main  # Change if you're using a different branch
+      - main  # Thay đổi nếu bạn sử dụng branch khác
   pull_request:
     branches:
       - main
@@ -19,7 +20,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.13'  # Update Python version if needed
+          python-version: '3.13'  # Thay đổi phiên bản Python nếu cần
 
       - name: Install dependencies
         run: |
@@ -33,7 +34,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
-    if: github.ref == 'refs/heads/main'  # Deploy only when pushing to main branch
+    if: github.ref == 'refs/heads/main'  # Chỉ triển khai khi có đẩy lên nhánh main
 
     steps:
       - name: Checkout code
@@ -56,18 +57,10 @@ jobs:
           ssh-keyscan -H 159.223.113.204 >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
 
+
       - name: Deploy to DigitalOcean
         run: |
-          set -x  # Enable verbose mode
-          pwd
-          ls -l
-          if [ -d "test/deploy_django" ]; then
-            echo "Directory exists"
-          else
-            echo "Directory does not exist"
-            exit 1
-          fi
-          cd test/deploy_django
+          cd root/test/deploy_django
           git pull origin main
           source venv/bin/activate
           pip install -r requirements.txt
