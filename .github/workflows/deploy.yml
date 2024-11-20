@@ -29,7 +29,7 @@ jobs:
 
       - name: Run tests
         run: |
-          python ${{ github.workspace }}/my_tennis_club/manage.py test
+          python manage.py test
 
   deploy:
     runs-on: ubuntu-latest
