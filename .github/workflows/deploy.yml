@@ -47,13 +47,13 @@ jobs:
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
           touch ~/.ssh/known_hosts
-          ssh-keyscan -H 157.230.234.139 >> ~/.ssh/known_hosts
+          ssh-keyscan -H 159.223.113.204 >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
 
       - name: Deploy to DigitalOcean
         run: |
-          ssh -T -o StrictHostKeyChecking=no root@157.230.234.139 << 'EOF'
-            cd /test3/test_deploy_django
+          ssh -T -o StrictHostKeyChecking=no root@159.223.113.204 << 'EOF'
+            cd /test/test_deploy_django
             git pull origin main
             source venv/bin/activate
             pip install -r my_tennis_club/requirements.txt
