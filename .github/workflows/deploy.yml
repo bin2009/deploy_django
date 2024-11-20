@@ -42,17 +42,26 @@ jobs:
 
       - name: Set up SSH
         run: |
+          # Start the SSH agent
           eval "$(ssh-agent -s)"
+          
+          # Add private key from GitHub Secrets to the SSH agent
           echo "${{ secrets.SSH_PRIVATE_KEY }}" | tr -d '\r' | ssh-add -
+          
+          # Create SSH directory and set proper permissions
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
+          
+          # Add the server's public key to the known_hosts file to avoid SSH verification issues
           touch ~/.ssh/known_hosts
           ssh-keyscan -H 159.223.113.204 >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
 
+
       - name: Deploy to DigitalOcean
         run: |
-          ssh -T -o StrictHostKeyChecking=no root@159.223.113.204 << 'EOF'
+          # Run the deployment commands on the Droplet
+          ssh -o StrictHostKeyChecking=no root@159.223.113.204 << 'EOF'
             cd /test/test_deploy_django
             git pull origin main
             source venv/bin/activate
