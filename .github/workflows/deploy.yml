@@ -101,7 +101,7 @@ jobs:
         username: ${{ secrets.SERVER_USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
-          cd /root/deploy_django
+          cd deploy_django
           git pull origin main
           source venv/bin/activate  # Nếu sử dụng virtualenv
           pip install -r requirements.txt
